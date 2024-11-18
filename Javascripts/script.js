@@ -1,74 +1,47 @@
-// Language Configuration
+// Auto-select language based on browser settings
 const langBtn = document.getElementById('lang-btn');
 const dropdownBtns = document.querySelectorAll('.dropdown-content button');
 let currentLang = navigator.language.slice(0, 2) || 'en';
 
+// Update the website's text based on selected language
 const languages = {
   es: {
-    welcome: "Bienvenido a CDPage",
-    description: "¡Tu plataforma para comunidad, proyectos y más!",
-    statsTitle: "Estadísticas del sitio web",
-    users: "Usuarios",
-    projects: "Proyectos",
-    comments: "Comentarios",
-    whyJoin: "¿Por qué unirse?",
-    reasons: [
-      "Únete a una comunidad vibrante para compartir ideas y colaborar.",
-      "Descubre herramientas y recursos adaptados a tus intereses."
-    ]
+    welcome: "Bienvenido a CDSpace",
+    description: "Tu centro para comunidad, creatividad e innovación.",
+    stats: "Estadísticas del sitio web",
+    highlights: "Proyectos destacados",
+    features: "¿Por qué elegir CDSpace?"
   },
   en: {
-    welcome: "Welcome to CDPage",
-    description: "Your go-to platform for community, projects, and more!",
-    statsTitle: "Website Statistics",
-    users: "Users",
-    projects: "Projects",
-    comments: "Comments",
-    whyJoin: "Why Join Us?",
-    reasons: [
-      "Join a thriving community to share ideas and collaborate.",
-      "Discover tools and resources tailored to your interests."
-    ]
+    welcome: "Welcome to CDSpace",
+    description: "Your hub for community, creativity, and innovation.",
+    stats: "Website Statistics",
+    highlights: "Featured Projects",
+    features: "Why Choose CDSpace?"
   },
   br: {
-    welcome: "Bem-vindo ao CDPage",
-    description: "Sua plataforma para comunidade, projetos e mais!",
-    statsTitle: "Estatísticas do site",
-    users: "Usuários",
-    projects: "Projetos",
-    comments: "Comentários",
-    whyJoin: "Por que se juntar?",
-    reasons: [
-      "Junte-se a uma comunidade vibrante para compartilhar ideias e colaborar.",
-      "Descubra ferramentas e recursos adaptados aos seus interesses."
-    ]
+    welcome: "Bem-vindo ao CDSpace",
+    description: "Seu centro para comunidade, criatividade e inovação.",
+    stats: "Estatísticas do site",
+    highlights: "Projetos em destaque",
+    features: "Por que escolher o CDSpace?"
   }
 };
 
-// Update Content Based on Language
 function updateLanguage(lang) {
-  const langData = languages[lang];
-  document.querySelector('.info h1').textContent = langData.welcome;
-  document.querySelector('.info p').textContent = langData.description;
-  document.querySelector('.stats h2').textContent = langData.statsTitle;
-  document.querySelectorAll('.stats li span').forEach((span, index) => {
-    const key = ['users', 'projects', 'comments'][index];
-    span.previousSibling.textContent = langData[key] + ": ";
-  });
-  const reasons = document.querySelector('.additional-info');
-  reasons.querySelector('h2').textContent = langData.whyJoin;
-  reasons.querySelectorAll('p').forEach((p, index) => {
-    p.textContent = langData.reasons[index];
-  });
+  const texts = languages[lang];
+  document.querySelector('.intro h1').textContent = texts.welcome;
+  document.querySelector('.intro p').textContent = texts.description;
+  document.querySelector('.stats h2').textContent = texts.stats;
+  document.querySelector('.highlights h2').textContent = texts.highlights;
+  document.querySelector('.features h2').textContent = texts.features;
 }
 
-// Event Listeners for Language Selection
-dropdownBtns.forEach((btn) =>
-  btn.addEventListener('click', (e) => {
-    currentLang = e.target.getAttribute('data-lang');
+dropdownBtns.forEach(btn => 
+  btn.addEventListener('click', e => {
+    currentLang = e.target.dataset.lang;
     updateLanguage(currentLang);
   })
 );
 
-// Initialize Language
 updateLanguage(currentLang);
