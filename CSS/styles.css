@@ -5,7 +5,9 @@ body {
     background-color: #121212; /* Dark theme */
     color: #e0e0e0;
     overflow-x: hidden;
-    padding-bottom: 50px; /* Footer spacing */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Make sure the page takes at least the full height of the viewport */
   }
   
   /* Topbar */
@@ -90,6 +92,7 @@ body {
   .content {
     text-align: center;
     padding: 50px 20px;
+    flex-grow: 1; /* Ensure the content section grows to fill the space */
   }
   
   h1, h2 {
@@ -131,12 +134,10 @@ body {
     background: #1a1a1a;
     padding: 20px 20px;
     text-align: center;
-    position: relative;
-    bottom: 0;
-    width: 100%;
     color: #e0e0e0;
     font-size: 0.9rem;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+    margin-top: auto; /* Ensure the footer stays at the bottom */
   }
   
   /* Responsive */
