@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #121212;
+    background-color: #0a0a0a; /* Dark background */
     color: #e0e0e0;
   }
   
@@ -12,20 +12,26 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #1f1f1f;
-    border-bottom: 2px solid #32cd32;
+    background-color: #001f3f; /* Darker blue for topbar */
+    border-bottom: 2px solid #0099ff;
   }
   
   .logo {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #32cd32;
+    color: #0099ff;
   }
   
-  .nav button {
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .nav button, .dropdown button {
     background: none;
-    border: 1px solid #32cd32;
-    color: #32cd32;
+    border: 1px solid #0099ff;
+    color: #0099ff;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
@@ -33,9 +39,39 @@ body {
     transition: 0.3s;
   }
   
-  .nav button:hover {
-    background-color: #32cd32;
-    color: #1f1f1f;
+  .nav button:hover, .dropdown-content button:hover {
+    background-color: #0099ff;
+    color: #ffffff;
+  }
+  
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #1a1a1a;
+    border: 1px solid #0099ff;
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 10;
+  }
+  
+  .dropdown-content button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: none;
+    text-align: left;
+    font-size: 1rem;
+    color: #0099ff;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
   }
   
   /* Main Content */
@@ -46,12 +82,12 @@ body {
   
   .info h1 {
     font-size: 2rem;
-    color: #32cd32;
+    color: #0099ff;
   }
   
-  .stats h2 {
+  .stats h2, .additional-info h2 {
     margin-top: 20px;
-    color: #32cd32;
+    color: #0099ff;
   }
   
   .stats ul {
@@ -65,31 +101,11 @@ body {
   
   /* Footer */
   .footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #1f1f1f;
-    border-top: 2px solid #32cd32;
-  }
-  
-  .footer p, .footer a {
+    text-align: center;
+    padding: 10px;
+    background-color: #001f3f; /* Same as topbar */
+    border-top: 2px solid #0099ff;
     color: #e0e0e0;
-    text-decoration: none;
-  }
-  
-  .footer button {
-    background: none;
-    border: 1px solid #32cd32;
-    color: #32cd32;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .footer button:hover {
-    background-color: #32cd32;
-    color: #1f1f1f;
   }
   
   /* Responsiveness */
@@ -101,7 +117,6 @@ body {
     }
   
     .footer {
-      flex-wrap: wrap;
       text-align: center;
     }
   }

@@ -1,6 +1,7 @@
-// Language Button Functionality
+// Language Configuration
 const langBtn = document.getElementById('lang-btn');
-let currentLang = 'es';
+const dropdownBtns = document.querySelectorAll('.dropdown-content button');
+let currentLang = navigator.language.slice(0, 2) || 'en';
 
 const languages = {
   es: {
@@ -10,7 +11,11 @@ const languages = {
     users: "Usuarios",
     projects: "Proyectos",
     comments: "Comentarios",
-    support: "Soporte"
+    whyJoin: "¿Por qué unirse?",
+    reasons: [
+      "Únete a una comunidad vibrante para compartir ideas y colaborar.",
+      "Descubre herramientas y recursos adaptados a tus intereses."
+    ]
   },
   en: {
     welcome: "Welcome to CDPage",
@@ -19,7 +24,11 @@ const languages = {
     users: "Users",
     projects: "Projects",
     comments: "Comments",
-    support: "Support"
+    whyJoin: "Why Join Us?",
+    reasons: [
+      "Join a thriving community to share ideas and collaborate.",
+      "Discover tools and resources tailored to your interests."
+    ]
   },
   br: {
     welcome: "Bem-vindo ao CDPage",
@@ -28,27 +37,38 @@ const languages = {
     users: "Usuários",
     projects: "Projetos",
     comments: "Comentários",
-    support: "Apoio"
+    whyJoin: "Por que se juntar?",
+    reasons: [
+      "Junte-se a uma comunidade vibrante para compartilhar ideias e colaborar.",
+      "Descubra ferramentas e recursos adaptados aos seus interesses."
+    ]
   }
 };
 
-// Switch Language
-langBtn.addEventListener('click', () => {
-  currentLang = currentLang === 'es' ? 'en' : currentLang === 'en' ? 'br' : 'es';
-  updateLanguage();
-});
-
-function updateLanguage() {
-  const lang = languages[currentLang];
-  document.querySelector('.info h1').textContent = lang.welcome;
-  document.querySelector('.info p').textContent = lang.description;
-  document.querySelector('.stats h2').textContent = lang.statsTitle;
-  document.querySelector('#support-btn').textContent = lang.support;
-
-  const stats = document.querySelectorAll('.stats li span');
-  stats[0].previousSibling.textContent = lang.users + ": ";
-  stats[1].previousSibling.textContent = lang.projects + ": ";
-  stats[2].previousSibling.textContent = lang.comments + ": ";
+// Update Content Based on Language
+function updateLanguage(lang) {
+  const langData = languages[lang];
+  document.querySelector('.info h1').textContent = langData.welcome;
+  document.querySelector('.info p').textContent = langData.description;
+  document.querySelector('.stats h2').textContent = langData.statsTitle;
+  document.querySelectorAll('.stats li span').forEach((span, index) => {
+    const key = ['users', 'projects', 'comments'][index];
+    span.previousSibling.textContent = langData[key] + ": ";
+  });
+  const reasons = document.querySelector('.additional-info');
+  reasons.querySelector('h2').textContent = langData.whyJoin;
+  reasons.querySelectorAll('p').forEach((p, index) => {
+    p.textContent = langData.reasons[index];
+  });
 }
 
-updateLanguage();
+// Event Listeners for Language Selection
+dropdownBtns.forEach((btn) =>
+  btn.addEventListener('click', (e) => {
+    currentLang = e.target.getAttribute('data-lang');
+    updateLanguage(currentLang);
+  })
+);
+
+// Initialize Language
+updateLanguage(currentLang);

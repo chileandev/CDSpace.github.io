@@ -3,17 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CDPage</title>
+  <title>CDSpace</title>
   <link rel="stylesheet" href="CSS/styles.css">
 </head>
 <body>
   <!-- Topbar -->
   <header class="topbar">
-    <div class="logo">CDPage</div>
+    <div class="logo">CDSpace</div>
     <nav class="nav">
       <button id="login-btn">Login</button>
       <button id="signup-btn">Sign Up</button>
-      <button id="lang-btn">🌐</button>
+      <div class="dropdown">
+        <button id="lang-btn">🌐</button>
+        <div class="dropdown-content">
+          <button data-lang="es">Español</button>
+          <button data-lang="en">English</button>
+          <button data-lang="br">Português</button>
+        </div>
+      </div>
     </nav>
   </header>
 
@@ -31,12 +38,16 @@
         <li>Comments: <span id="comment-count">8,910</span></li>
       </ul>
     </section>
+    <section class="additional-info">
+      <h2>Why Join Us?</h2>
+      <p>Join a thriving community where you can share ideas, collaborate on projects, and stay updated on the latest trends.</p>
+      <p>Discover tools, resources, and opportunities tailored to your interests.</p>
+    </section>
   </main>
 
   <!-- Footer -->
   <footer class="footer">
-    <p>Powered by <a href="https://example.com">droxbot.com</a> | tiochilean</p>
-    <button id="support-btn">Support</button>
+    <p>&copy; 2024 CDPage. All rights reserved.</p>
   </footer>
 
   <script src="Javascripts/script.js"></script>
