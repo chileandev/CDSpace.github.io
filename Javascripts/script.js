@@ -8,30 +8,35 @@ setLanguage(userLang);
 
 // Change website language on button click
 langButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const lang = button.getAttribute('data-lang');
-    setLanguage(lang);
+  button.addEventListener('click', (e) => {
+    const selectedLang = e.target.dataset.lang;
+    setLanguage(selectedLang);
   });
 });
 
-// Language changer
-function setLanguage(lang) {
+function setLanguage(language) {
   langElements.forEach(el => {
-    const translations = el.getAttribute('data-lang-text');
-    const text = translations.split('|').find(t => t.startsWith(`${lang}:`)) || translations.split('|')[0];
-    el.textContent = text.split(':')[1];
+    const langText = el.dataset.langText.split('|');
+    const text = langText.find(t => t.startsWith(`${language}:`));
+    if (text) {
+      el.textContent = text.split(':')[1];
+    }
   });
-}
 
-// Scroll animations
-function handleScrollAnimations() {
-  animatedSections.forEach(section => {
-    const rect = section.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.9) {
-      section.classList.add('visible');
+  // Mark language button as active
+  langButtons.forEach(button => {
+    button.classList.remove('active');
+    if (button.dataset.lang === language) {
+      button.classList.add('active');
     }
   });
 }
 
-window.addEventListener('scroll', handleScrollAnimations);
-handleScrollAnimations(); // Initialize on page load
+// Animation effect for elements
+window.addEventListener('scroll', () => {
+  animatedSections.forEach(section => {
+    if (section.getBoundingClientRect().top < window.innerHeight) {
+      section.classList.add('visible');
+    }
+  });
+});
