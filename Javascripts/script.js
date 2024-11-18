@@ -1,12 +1,12 @@
-const langButtons = document.querySelectorAll('.dropdown-content button');
+const langButtons = document.querySelectorAll('[data-lang]');
 const langElements = document.querySelectorAll('[data-lang-text]');
+const langDropdown = document.querySelector('.dropdown-content');
 const animatedSections = document.querySelectorAll('.animate');
 
-// Detect user's language automatically
-const userLang = navigator.language.slice(0, 2) || 'es';
-setLanguage(userLang);
+// Set default language
+let currentLanguage = 'es';
 
-// Change website language on button click
+// Change language based on button click
 langButtons.forEach(button => {
   button.addEventListener('click', (e) => {
     const selectedLang = e.target.dataset.lang;
@@ -30,9 +30,10 @@ function setLanguage(language) {
       button.classList.add('active');
     }
   });
+  currentLanguage = language;
 }
 
-// Animation effect for elements
+// Scroll effect for animations
 window.addEventListener('scroll', () => {
   animatedSections.forEach(section => {
     if (section.getBoundingClientRect().top < window.innerHeight) {

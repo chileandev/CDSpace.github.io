@@ -134,20 +134,16 @@ body {
     position: relative;
     bottom: 0;
     width: 100%;
-  }
-  
-  .footer p {
     color: #e0e0e0;
     font-size: 0.9rem;
-    margin: 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
   }
   
   /* Responsive */
   @media (max-width: 768px) {
     .topbar {
       flex-direction: column;
-      align-items: center;
-      padding: 10px;
+      align-items: flex-start;
     }
   
     .nav {
@@ -155,16 +151,8 @@ body {
       gap: 10px;
     }
   
-    .dropdown-content {
-      width: 200px;
-    }
-  
-    h1 {
-      font-size: 1.8rem;
-    }
-  
-    p {
-      font-size: 1rem;
+    .content {
+      padding: 30px 15px;
     }
   }
   
